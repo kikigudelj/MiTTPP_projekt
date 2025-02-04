@@ -2,7 +2,7 @@
 
 ## Uvod
 
-Ovaj dokument opisuje automatske testove napisane u Javi uz korištenje Selenium frameworka i TestNG biblioteke. Cilj testova je osigurati ispravnost ključnih funkcionalnosti različitih web aplikacija, omogućujući bržu detekciju grešaka i poboljšanja softvera.
+Ovaj dokument opisuje automatske testove napisane u Javi uz korištenje Selenium frameworka. Cilj testova je provjeriti ispravnost funkcionalnosti različitih web aplikacija, omogućujući bržu detekciju grešaka i poboljšanja softvera.
 
 ---
 
@@ -23,14 +23,12 @@ Prije pokretanja testova potrebno je:
 Projekt je organiziran u sljedećim direktorijima:
 
 - `src/main/java` – Glavni kod aplikacije
-- `src/test/java` – Testni kod
-- `resources` – Konfiguracijske datoteke
+- `src/test/java` – Testni kod koji se sastoji od 5 file-ova, svaki predstavlja 1 test
 
 Testove je moguće pokrenuti na dva načina:
-1. Direktno unutar **IntelliJ IDEA** razvojnog okruženja
-2. Korištenjem komandne linije putem **Maven** ili **Gradle** alata:
+1. Direktno unutar **IntelliJ IDEA** razvojnog okruženja 
+2. Korištenjem komandne linije putem **Maven** alata:
    - `mvn test`
-   - `gradle test`
 
 ---
 
@@ -101,6 +99,6 @@ Za dodatne informacije ili proširenja testnih scenarija, slobodno se obratite.
 
 ---
 
-📌 **Autor:** [Vaše ime]  
-📌 **Verzija dokumenta:** 1.0
+**Autor:** Kristijan Gudelj  
+
 
