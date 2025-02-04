@@ -1,41 +1,106 @@
-# MiTTPP_projekt
+# MiTTPP Projekt
 
-Uvod
+## Uvod
 
-U ovom dokumentu predstavljeni su automatski testovi napisani u Javi uz korištenje Selenium frameworka i TestNG biblioteke. Ti su testovi smješteni u direktorij src/test/java unutar projekta, a dizajnirani su za verifikaciju raznih funkcionalnosti web aplikacija, pružajući pouzdan način za identifikaciju grešaka ili potencijalnih problema prilikom promjena i unapređenja softvera. Automatsko testiranje omogućuje brže izvršavanje testova u usporedbi s ručnim testiranjem, smanjujući mogućnost ljudskih grešaka i povećavajući efikasnost testnog procesa.
+Ovaj dokument opisuje automatske testove napisane u Javi uz korištenje Selenium frameworka i TestNG biblioteke. Cilj testova je osigurati ispravnost ključnih funkcionalnosti različitih web aplikacija, omogućujući bržu detekciju grešaka i poboljšanja softvera.
 
-Svi testovi su implementirani u razvojnog okruženju IntelliJ IDEA, jednom od najpopularnijih IDE-ova za Javu. Da bi testovi ispravno radili, potrebno je preuzeti, instalirati ChromeDriver i dodati u PATH unutar "Enviroment Variables", koji omogućava interakciju između Selenium-a i web preglednika Google Chrome.
+---
 
-Opis korištenja:
+## Preduvjeti za pokretanje testova
 
-Kao što sam ranije naveo testovi se nalazi u direktoriju src/test/java, a svaki test se može pokrenuti na dva načina. ![alt text](image.png)
+Prije pokretanja testova potrebno je:
 
+1. Instalirati **Java JDK**
+2. Instalirati **IntelliJ IDEA** (ili drugo razvojno okruženje koje podržava Javu)
+3. Preuzeti **Chrome Driver**
+4. Dodati putanju do **chromedriver.exe** u sistemsku varijablu okruženja
+5. Instalirati **Maven** ili **Gradle** za upravljanje ovisnostima
 
+---
 
+## Struktura projekta i postupak izvršavanja testova
 
-Svrha i opis testova:
+Projekt je organiziran u sljedećim direktorijima:
 
-ChessLoginTest
+- `src/main/java` – Glavni kod aplikacije
+- `src/test/java` – Testni kod
+- `resources` – Konfiguracijske datoteke
 
-Svrha: Ovaj test verificira mogućnost uspješnog prijavljivanja na Chess.com koristeći važeće korisničke podatke.
-Opis: Test započinje otvaranjem stranice za prijavu na Chess.com. Nakon što se stranica učita, test unosi korisničko ime i lozinku. Simulira se akcija klika na dugme za prijavu, a nakon toga, test provjerava da li je korisnik preusmjeren na početnu stranicu igre. U slučaju neuspješne prijave, test prijavljuje grešku koristeći poruku "Prijavljivanje nije uspjelo."
+Testove je moguće pokrenuti na dva načina:
+1. Direktno unutar **IntelliJ IDEA** razvojnog okruženja
+2. Korištenjem komandne linije putem **Maven** ili **Gradle** alata:
+   - `mvn test`
+   - `gradle test`
 
-FeritPageTest
+---
 
-Svrha: Ovaj test provjerava navigaciju do sekcije koja prikazuje studijske programe na web stranici FERIT-a.
-Opis: Test započinje otvaranjem glavne stranice FERIT-a i maksimiziranjem prozora preglednika radi boljeg prikaza. Nakon toga, test klika na link s oznakom "Upisi i studiji", a zatim na link "Pregled studijskih programa". Koristeći WebDriverWait, test osigurava da se očekivana stranica uspješno učitala, a zatim provjerava URL kako bi potvrdio da je navigacija uspješna.
+## Opis testova
 
-NikeAddToFavouritesTest
+### **1. ChessLoginTest**
+**Svrha:** Verifikacija uspješne prijave na Chess.com s važećim korisničkim podacima.
 
-Svrha: Ovaj test omogućuje pretraživanje proizvoda na Nike web stranici i dodavanje odabranog proizvoda u favorites (omiljene).
-Opis: Test otvara stranicu sa Jordan proizvodima na Nike-u i pritisne dugme za pretragu. Ispunjava polje za pretragu pojmom "Tech Fleece" i šalje upit. Nakon što se prikaže popis proizvoda, test će simulirati klik na prvi proizvod, a zatim na dugme koje omogućava dodavanje u favorite. Proverava se da li korisnik biva preusmjeren na stranicu za prijavu.
+**Opis:** 
+- Otvara stranicu za prijavu na **Chess.com**
+- Unosi korisničko ime i lozinku
+- Simulira klik na dugme za prijavu
+- Provjerava je li korisnik uspješno preusmjeren na početnu stranicu igre
+- U slučaju neuspješne prijave, prikazuje poruku: *"Prijavljivanje nije uspjelo."*
 
-PlaytoyLoginTest
+---
 
-Svrha: Ovaj test verifikuje funkcionalnost prijave na Playtoy platformu, koja koristi sustav autentikacije.
-Opis: Test otvara stranicu za prijavu i unosi korisničko ime i lozinku. Koristi se WebDriverWait za čekanje dok se elementi ne učitaju i postanu interaktivni. Nakon uspješne prijave, test potvrđuje da li je korisnik preusmjeren na početnu stranicu Playtoy-a, čime se osigurava da je prijava bila uspješna.
+### **2. FeritPageTest**
+**Svrha:** Provjera navigacije do sekcije s informacijama o studijskim programima na web stranici **FERIT-a**.
 
-ZalandoSearchTest
+**Opis:** 
+- Otvara početnu stranicu **FERIT-a** i maksimizira preglednik
+- Klikne na link *"Upisi i studiji"*, zatim na *"Pregled studijskih programa"*
+- Korištenjem **WebDriverWait** osigurava da je stranica uspješno učitana
+- Provjerava URL kako bi potvrdio uspješnu navigaciju
 
-Svrha: Ovaj test provjerava mogućnosti filtriranja proizvoda na Zalando web stranici.
-Opis: Test započinje na glavnoj stranici Zalando-a, gdje se fokusira na odabir kategorije "obuća". Nakon klika na relevantan link, test koristi opcije filtriranja kako bi odabrao proizvode brenda "adidas". Simulira se proces klikanja na različite opcije i na kraju se test može usredotočiti na spremanje tih opcija. Test osigurava da su svi koraci pravilno izvršeni, čime se potvrđuje ispravnost funkcioniranja.
+---
+
+### **3. NikeAddToFavouritesTest**
+**Svrha:** Omogućiti pretraživanje proizvoda na **Nike** web stranici i dodavanje u omiljene proizvode.
+
+**Opis:** 
+- Otvara stranicu s **Jordan** proizvodima na **Nike**
+- Pokreće pretragu za *"Tech Fleece"*
+- Klikne na prvi proizvod iz rezultata
+- Simulira dodavanje proizvoda u favorite
+- Provjerava preusmjerava li sustav korisnika na stranicu za prijavu
+
+---
+
+### **4. PlaytoyLoginTest**
+**Svrha:** Verifikacija prijave na **Playtoy** platformu.
+
+**Opis:** 
+- Otvara stranicu za prijavu na **Playtoy**
+- Unosi korisničko ime i lozinku
+- Koristi **WebDriverWait** za osiguranje učitanja elemenata
+- Provjerava preusmjerava li sustav korisnika na početnu stranicu **Playtoy-a**, čime potvrđuje uspješnu prijavu
+
+---
+
+### **5. ZalandoSearchTest**
+**Svrha:** Provjera funkcionalnosti filtriranja proizvoda na **Zalando** web stranici.
+
+**Opis:** 
+- Otvara početnu stranicu **Zalando**
+- Odabire kategoriju *"obuća"*
+- Korištenjem filtera odabire proizvode brenda *"Adidas"*
+- Provjerava jesu li svi koraci pravilno izvršeni i je li filtriranje uspješno
+
+---
+
+## Zaključak
+
+Implementirani testovi omogućuju pouzdano testiranje ključnih funkcionalnosti različitih web aplikacija, smanjujući potrebu za ručnim testiranjem i poboljšavajući efikasnost softverskog razvoja. Integracijom Selenium frameworka i TestNG biblioteke, osigurana je fleksibilnost, skalabilnost i preciznost u provjeri ispravnosti aplikacija.
+
+Za dodatne informacije ili proširenja testnih scenarija, slobodno se obratite.
+
+---
+
+📌 **Autor:** [Vaše ime]  
+📌 **Verzija dokumenta:** 1.0
+
