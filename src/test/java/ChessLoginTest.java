@@ -2,46 +2,47 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class ChessTest {
+public class ChessLoginTest {
 
     private WebDriver driver;
+    private WebDriverWait wait;
 
     @BeforeMethod
     public void setup() {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
         driver = new ChromeDriver();
+        wait = new WebDriverWait(driver, 10);
     }
 
     @Test
-    public void testLogin() throws InterruptedException {
+    public void testLogin() {
 
         driver.get("https://www.chess.com/login_and_go?returnUrl=https://www.chess.com/");
 
-        WebElement usernameInput = driver.findElement(By.xpath("//*[@id='username-input-field']/div/input"));
+        WebElement usernameInput = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='username-input-field']/div/input")));
         usernameInput.sendKeys("sahist221");
 
-        Thread.sleep(2000);
-
-        WebElement passwordInput = driver.findElement(By.xpath("//*[@id='password-input-field']/div/input"));
+        WebElement passwordInput = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='password-input-field']/div/input")));
         passwordInput.sendKeys("Cevapi123");
 
-        Thread.sleep(2000);
-
-        WebElement loginButton = driver.findElement(By.xpath("//*[@id='login']"));
+        WebElement loginButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='login']")));
         loginButton.click();
 
-        Thread.sleep(3000);
-
-        Assert.assertTrue(driver.getCurrentUrl().contains("home"), "Prijavljivanje nije uspjelo.");
+        boolean loginSuccessful = wait.until(ExpectedConditions.urlContains("home"));
+        Assert.assertTrue(loginSuccessful, "Prijavljivanje nije uspjelo.");
     }
 
     @AfterMethod
     public void teardown() {
-        driver.quit();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

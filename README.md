@@ -14,7 +14,7 @@ Prije pokretanja testova potrebno je:
 2. Instalirati **IntelliJ IDEA** (ili drugo razvojno okruženje koje podržava Javu)
 3. Preuzeti **Chrome Driver**
 4. Dodati putanju do **chromedriver.exe** u sistemsku varijablu okruženja
-5. Instalirati **Maven** ili **Gradle** za upravljanje ovisnostima
+5. Instalirati **Maven** za upravljanje ovisnostima
 
 ---
 
